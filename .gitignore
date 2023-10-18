@@ -1,2 +1,6 @@
 .idea/*
 /.idea
+script.spec
+build/*
+dist/*
+downloads backup/*

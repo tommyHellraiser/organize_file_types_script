@@ -7,14 +7,11 @@ if __name__ == '__main__':
     print("To start classifying your files by file type, please paste the folder path below:")
 
     # Getting the folder path
-    # Desktop
-    # folder_path = "F:\\Descargas"
-
-    # Laptop
-    folder_path = "C:\\Users\\tponce\\Downloads"
+    cur_dir = os.getcwd()
+    print(cur_dir)
 
     # Organized files folder
-    organized_folder = folder_path + "\\organized"
+    organized_folder = cur_dir + "\\organized"
 
     if not os.path.exists(organized_folder):
         os.mkdir(organized_folder)
@@ -23,22 +20,16 @@ if __name__ == '__main__':
         os.mkdir(organized_folder)
 
     # Changing the current working directory
-    os.chdir(folder_path)
+    os.chdir(cur_dir)
 
     # Counting the items and folders to classify
-    items_in_folder = os.listdir(folder_path)
+    items_in_folder = os.listdir(cur_dir)
     files_counter = 0
     dirs_counter = 0
-    # print(items_in_folder)
 
     for item in items_in_folder:
-        # TODO continue here
-        item.split(".")
-        # print(item)
-        # if os.path.isfile(os.path.join(folder_path, item)):
         if os.path.isfile(item):
             files_counter += 1
-        # elif os.path.isdir(os.path.join(folder_path, item)):
         elif os.path.isdir(item):
             dirs_counter += 1
 
@@ -51,11 +42,12 @@ if __name__ == '__main__':
 
     copy_count = 0
 
+    os.chdir(organized_folder)
+
     # Iterate and classify all items
     for item in items_in_folder:
         # Split into file name and extension
         split = os.path.splitext(item)
-        # print(split[0])
         extension = split[1][1::]
 
         # If folder with extension name does not exist, create it
@@ -63,8 +55,9 @@ if __name__ == '__main__':
             os.mkdir(extension)
 
         if extension != "":
-            result = shutil.copy(os.path.join(folder_path, item), extension)
+            result = shutil.copy(os.path.join(cur_dir, item), extension)
             if result is not None:
                 copy_count += 1
 
     print(f"Successfully organized {copy_count} files")
+    print("Press enter to exit...")
