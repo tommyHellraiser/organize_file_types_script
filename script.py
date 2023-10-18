@@ -50,7 +50,7 @@ if __name__ == '__main__':
         # If file is current executable named script.exe, skip
         if item == "script.exe":
             continue
-            
+
         # Split into file name and extension
         split = os.path.splitext(item)
 
@@ -67,3 +67,4 @@ if __name__ == '__main__':
 
     print(f"Successfully organized {copy_count} files")
     print("Press enter to exit...")
+    input()
