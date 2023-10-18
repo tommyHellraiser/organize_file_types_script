@@ -46,8 +46,14 @@ if __name__ == '__main__':
 
     # Iterate and classify all items
     for item in items_in_folder:
+
+        # If file is current executable named script.exe, skip
+        if item == "script.exe":
+            continue
+            
         # Split into file name and extension
         split = os.path.splitext(item)
+
         extension = split[1][1::]
 
         # If folder with extension name does not exist, create it
